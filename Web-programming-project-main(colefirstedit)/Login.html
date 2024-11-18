@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css'><link rel="stylesheet" href="loginStyle.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Login</h2>
+        </div>
+        <form id="form" class="form">
+            <div class="form-control">
+                <label for="trn">Enter a Valid TRN</label>
+                <input type="text" placeholder="MUST be 8-12 digits" id="trn" pattern="^\d{8,12}$" required/>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="email" placeholder="example@gmail.com" id="email" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password must be 8 charachters long" id="password" pattern=".{8,}" required/>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+          
+                <button onclick="redirectToPage()" >Submit</button>
+            
+        </form>    
+            
+            <script>
+                                 function retrieveData() {
+                    
+                    const trn = localStorage.getItem('trn');
+                    const email = localStorage.getItem('email');
+                    const password = localStorage.getItem('password');
+        
+                    if (trn && email && password) {
+                        alert(`TRN: ${JSON.parse(trn)}\nEmail: ${JSON.parse(email)}\nPassword: ${JSON.parse(password)}`);
+                    } else {
+                        alert('You must Register');
+                    }
+                }
+                function redirectToPage() {
+            event.preventDefault();
+            window.location.href = "grandeur.html";
+        }
+            </script>
+            <script  src="Registervalid.js"></script>
+            <script src="Loginattempts.js"></script>
+            
+    
+</body>
+</html>
