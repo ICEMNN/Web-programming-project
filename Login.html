@@ -84,7 +84,9 @@
                     const pass = document.getElementById("password").value;
                     const checkMessage = document.getElementById("check");
                     const loginButton = document.getElementById("loginBtn");
+                    
 
+                    
                     if (pass.length >= 8) {
                         checkMessage.style.display = 'none';
                         loginButton.disabled = false;  // enable login button
@@ -100,26 +102,33 @@
                     const password = document.getElementById("password").value;
                     const trn = document.getElementById("trn").value;
                     const email = document.getElementById("email").value;  
+                    const message = document.getElementById("message");
 
+                    //  storing the information in local storage
+                    //localStorage.setItem("StoredUser", stringify(trn || email));
+                    //localStorage.setItem("StoredPassword", stringify(password));
+                    
+                    
+                    //retrieve stored values
+                    const storedUser  = getitem("storedUser");
+                    const storedEmail  = getitem("storedEmail");
+                    const storedPassword = getitem("storedPassword");
+                    
                     //validate password length before attempting to login
                     if (password.length < 8) {
                         alert("Password should be 8 or more characters");
                         return;
                     }
-
-                    //  storing the information in local storage
-                    localStorage.setItem("StoredUser", stringify(trn || email));
-                    localStorage.setItem("StoredPassword", stringify(password));
-                
-
-                    //retrieve stored values
-                    const storedUser  = getitem("StoredUser");
-                    const storedPassword = getitem("StoredPassword");
                     
+                    if (password !== (storedPassword || passkey)) {
+                        message.textContent = "Incorrect Password";
+                        message.style.color = "red";
+                    }
+                       
 
                     //check credentials
-                    if ((storedUser  === defTrn || storedUser === defEmail)  && storedPassword === passkey) {
-                        window.location.href = "grandeur.html";
+                    if ((trn === (storedUser || defTrn) || email === (storedEmail || defEmail)) && (password === storedPassword || password === passkey)) {
+                        window.location.href = "grandeur.html"
                     } else {
                         fail_counter++;
                         window.alert(`Incorrect login. You have ${3 - fail_counter} tries left.`);
@@ -138,7 +147,7 @@
 
                  function retrieveData() {
                     
-                    const name = localStorage.getItem('name');
+                    const name = localStorage.getItem('trn');
                     const email = localStorage.getItem('email');
                     const password = localStorage.getItem('password');
         
@@ -150,15 +159,12 @@
                 }
                 
                 function redirectToPage() {
-            event.preventDefault();
-            window.location.href = "grandeur.html";
-
-
-
+                event.preventDefault();
+                window.location.href = "grandeur.html";
         }
             </script>
-            <script  src="Registervalid.js"></script>
-            <script src="Loginattempts.js"></script>
+            <script  src="\.Registervalid.js"></script>
+            <script src="\.Loginattempts.js"></script>
             
     
 </body>
