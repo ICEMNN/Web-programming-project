@@ -1,8 +1,36 @@
 const form = document.getElementById('form');
-const username = document.getElementById('username');
+const trn = document.getElementById('trn');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
+
+document.getElementById('form').addEventListener('submit', function(event) {
+	event.preventDefault(); 
+
+	/*
+	const trn = document.getElementById('trn');
+	const email = document.getElementById('email');
+	const password = document.getElementById('password');
+	const form = document.getElementById("form");
+	*/
+	
+	localStorage.setItem('Trn', trn);
+	localStorage.setItem('email', email);
+	localStorage.setItem('password', password);
+	redirectToPage();	
+});
+
+function redirectToPage() {
+	event.preventDefault();
+	window.location.href = "Login.html";
+}
+
+function reset(){
+	document.getElementById("trn").value= '';
+	document.getElementById("email").value= '';
+	document.getElementById("password").value= '';
+}
+
 
 form.addEventListener('submit', e => {
 	e.preventDefault();
@@ -12,15 +40,15 @@ form.addEventListener('submit', e => {
 
 function checkInputs() {
 	
-	const usernameValue = username.value.trim();
+	const trnValue = trn.value.trim();
 	const emailValue = email.value.trim();
 	const passwordValue = password.value.trim();
 	const password2Value = password2.value.trim();
 	
 	if(usernameValue === '') {
-		setErrorFor(username, 'Username cannot be blank');
+		setErrorFor(trn, 'TRN cannot be blank');
 	} else {
-		setSuccessFor(username);
+		setSuccessFor(trn);
 	}
 	
 	if(emailValue === '') {
@@ -45,6 +73,18 @@ function checkInputs() {
 		setSuccessFor(password2);
 	}
 }
+
+//Stores trn as as registrationdata
+document.getElementById('form').addEventListener('submit', function (event) {
+	event.preventDefault();
+
+	var registrationData = {
+		trn: document.getElementById('trn').value,
+		email: document.getElementById('email').value,
+		password: document.getElementById('password').value,
+		password2: document.getElementById('password2').value};
+	localStorage.setItem('registrationData', JSON.stringify(registrationData));
+});
 
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;

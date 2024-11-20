@@ -13,8 +13,8 @@
         </div>
         <form id="form" class="form">
             <div class="form-control">
-                <label for="username">Username</label>
-                <input type="text" placeholder="Ocole1" id="username" />
+                <label for="trn">Enter a Valid TRN</label>
+                <input type="text" placeholder="(000-000-000)" id="trn" pattern="^\d{,9}$" required maxlength="9"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
@@ -40,36 +40,11 @@
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
-            <button onclick="redirectToPage()">Submit</button>
+            <button type="submit" id="registerBtn">Login</button>
+            <button type="button" id="reset" onclick="reset()">Reset</button>
         </form>    
-            <script>
-                document.getElementById('form').addEventListener('submit', function(event) {
-                    event.preventDefault(); 
-    
-                    const name = document.getElementById('name');
-                    const email = document.getElementById('email');
-                    const password = document.getElementById('password');
-                    const form = document.getElementById("form");
         
-                    
-                    localStorage.setItem('name', name);
-                    localStorage.setItem('email', email);
-                    localStorage.setItem('password', password);
-                    window.location.href = "index.html";
-
-                    function redirectToPage() {
-                    event.preventDefault();
-                    window.location.href = "index.html";
-                    }
-        
-        
-                   
-                });
-        
-            </script>
-           
-        
-            <script  src=".\Registervalid.js"></script>
+            <script  src="Registervalid.js"></script>
             
     
 </body>
