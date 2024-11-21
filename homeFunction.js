@@ -9,6 +9,11 @@ let products = [
     { id: 8, type: "tuxedo", price: 299.99, name: "Dark blue suede tuxedo" },
     { id: 9, type: "tuxedo", price: 299.99, name: "Double-breasted black tuxedo" },
     { id: 10, type: "tuxedo", price: 199.99, name: "White tuxedo" },
+    { id: 11, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
+    { id: 12, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
+    { id: 13, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
+    { id: 14, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
+    { id: 15, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
 ];
 
 let cart = [];
@@ -53,19 +58,27 @@ const market = document.querySelector('.market');
     });
 
     // load cart from local storage on page load
-    window.addEventListener('load', function() {
-        const storedCartItems = localStorage.getItem('cartItems');
-        const storedSubTot = localStorage.getItem('subTot');
-        const storedTax = localStorage.getItem('tax');
-        const storedTotal = localStorage.getItem('total');
-        if (storedCartItems && storedSubTot && storedTax && storedTotal) {
-            document.getElementById('cartItems').innerHTML = storedCartItems;
-            document.getElementById('subTot').textContent = storedSubTot;
-            document.getElementById('tax').textContent = storedTax;
-            document.getElementById('total').textContent = storedTotal;
-        }
-    });
-
+window.addEventListener('load', function() {
+    const storedCartItems = localStorage.getItem('cartItems');
+    const storedSubTot = localStorage.getItem('subTot');
+    const storedTax = localStorage.getItem('tax');
+    const storedTotal = localStorage.getItem('total');
+    if (storedCartItems && storedSubTot && storedTax && storedTotal) {
+        document.getElementById('cartItems').innerHTML = storedCartItems;
+        document.getElementById('subTot').textContent = storedSubTot;
+        document.getElementById('tax').textContent = storedTax;
+        document.getElementById('total').textContent = storedTotal;
+    }
+    
+    const data = {
+        cartItems: storedCartItems,
+        subTot: storedSubTot,
+        tax: storedTax,
+        total: storedTotal
+    };
+    
+    localStorage.setItem('data', JSON.stringify(data));
+});
 market.addEventListener('click', (e) => {
     if (e.target.classList.contains('addBtn')) {
         const productnum = e.target.closest('div').dataset.id; // Finding the data id of the item selected
