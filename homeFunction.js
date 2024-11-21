@@ -13,6 +13,7 @@ let products = [
 
 let cart = [];
 
+// Function to update cart and display
 function addToCart() {
     const cartItems = document.getElementById('cartItems');
     cartItems.innerHTML = '';
@@ -99,6 +100,7 @@ exitCart.addEventListener('click', function (e){
 });
 
 
+//function to update cart summary
 function updateCartSummary() {
     let subTot = 0;
     let taxRate = 0.15;
