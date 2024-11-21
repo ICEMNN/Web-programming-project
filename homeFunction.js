@@ -1,11 +1,3 @@
-
-// Function to create new products (commented out as it is not used)
- /*function newProduct(id, type, price, name){
-    this.type = type;
-    this.price = price;
-    this.name = name;
-}*/
-
 let products = [
     { id: 1, type: "slim-Fit", price: 299.99, name: "Charcoal slim-fit suit" },
     { id: 2, type: "slim-Fit", price: 349.99, name: "Gray slim-fit suit" },
@@ -31,18 +23,47 @@ function addToCart() {
         <div>
         <h4>${item.name}</h4>
         <p>$${item.price}</p>
-        <input type="number" value="${item.quantity}" data-index="${index}" min="1" class="amount">
+        <input id="itemQty" type="number" value="${item.quantity}" data-index="${index}" min="1" class="amount">
         <button class="delete" data-index="${index}">Delete</button>
         </div>
         `;
         
         cartItems.appendChild(newitem);
+        
+        
     });
 
     updateCartSummary();
 }
 
 const market = document.querySelector('.market');
+
+//made the page retain items in cart when reloaded Cole 15/11/2024
+    // store cart in local storage on page unload
+    window.addEventListener('beforeunload', function() {
+        const cartItems = document.getElementById('cartItems').innerHTML;
+        const subTot = document.getElementById('subTot').textContent;
+        const tax = document.getElementById('tax').textContent;
+        const total = document.getElementById('total').textContent;
+        localStorage.setItem('cartItems', cartItems);
+        localStorage.setItem('subTot', subTot);
+        localStorage.setItem('tax', tax);
+        localStorage.setItem('total', total);
+    });
+
+    // load cart from local storage on page load
+    window.addEventListener('load', function() {
+        const storedCartItems = localStorage.getItem('cartItems');
+        const storedSubTot = localStorage.getItem('subTot');
+        const storedTax = localStorage.getItem('tax');
+        const storedTotal = localStorage.getItem('total');
+        if (storedCartItems && storedSubTot && storedTax && storedTotal) {
+            document.getElementById('cartItems').innerHTML = storedCartItems;
+            document.getElementById('subTot').textContent = storedSubTot;
+            document.getElementById('tax').textContent = storedTax;
+            document.getElementById('total').textContent = storedTotal;
+        }
+    });
 
 market.addEventListener('click', (e) => {
     if (e.target.classList.contains('addBtn')) {
@@ -65,11 +86,18 @@ market.addEventListener('click', (e) => {
 
 const seeCart = document.getElementsByClassName('seeCart')[0];
 const cartDiv = document.getElementsByClassName('cart')[0];
+const exitCart = document.getElementById('exit');
 
 // Show the cart and the items added
 seeCart.addEventListener('click', function() {
     cartDiv.style.display = "block";
 });
+
+exitCart.addEventListener('click', function (e){
+    e.preventDefault();
+    cartDiv.style.display = "none";
+});
+
 
 function updateCartSummary() {
     let subTot = 0;

@@ -153,17 +153,18 @@ img{
     position: absolute;
     top:0px;
     right:0px;
-    background-color: white;
+    background-color:rgb(41, 41, 41); ;
     border-radius: 10px;
     margin-right: 5px;
     animation-name: appearing;
     animation-duration: 3s;
     text-align: center;
     z-index: 10;
-    color: black;
+    color: wheat;
     text-align: center;
     
 }
+
 
 .hide{
     display: none;
@@ -185,6 +186,19 @@ img{
 
 }
 
+.logout{
+    background: none;
+    color: wheat;
+    font-size: small;
+    border: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.logout:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .seeCart:hover{
     text-decoration: underline;
     cursor: pointer;
@@ -202,4 +216,37 @@ img{
     text-decoration: underline;
     cursor: pointer;
 
+}
+
+.cartAction{
+    background: none;
+    color: wheat;
+    font-size: larger;
+    border: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.cartAction:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cartAction #exit{
+    float: right;
+}
+
+#exit:hover{
+    text-decoration:none;
+    cursor: pointer;
+}
+
+#cartHead{
+    padding: 10px;
+}
+
+#itemQty{
+    background:none;
+    border: 1px solid wheat;
+    color: wheat;
 }

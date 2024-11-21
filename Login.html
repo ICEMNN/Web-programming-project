@@ -44,7 +44,7 @@
         </form>    
             
             <script>
-
+                //default login credentials
                 const defTrn = "123456789";
                 const passkey = "Password";
                 const defEmail = "name1234@email.com"
@@ -103,10 +103,6 @@
                     const trn = document.getElementById("trn").value;
                     const email = document.getElementById("email").value;  
                     const message = document.getElementById("message");
-
-                    //  storing the information in local storage
-                    //localStorage.setItem("StoredUser", stringify(trn || email));
-                    //localStorage.setItem("StoredPassword", stringify(password));
                     
                     
                     //retrieve stored values
@@ -144,27 +140,12 @@
                     document.getElementById("email").value= '';
                     document.getElementById("password").value= '';
                 }
-
-                 function retrieveData() {
-                    
-                    const name = localStorage.getItem('trn');
-                    const email = localStorage.getItem('email');
-                    const password = localStorage.getItem('password');
-        
-                    if (name && email && password) {
-                        alert(`Name: ${name}\nEmail: ${email}\nPassword: ${password}`);
-                    } else {
-                        alert('You must Register');
-                    }
-                }
-                
+ 
                 function redirectToPage() {
                 event.preventDefault();
                 window.location.href = "grandeur.html";
         }
             </script>
-            <script  src="\.Registervalid.js"></script>
-            <script src="\.Loginattempts.js"></script>
             
     
 </body>

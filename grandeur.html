@@ -11,10 +11,9 @@
         <h1>Grandeur</h1>
         <nav style="text-align: right;">
         <button class="seeCart">cart</button>
-        
-    </div>
-</nav>
-</header>
+        <button class="logout">Logout</button>
+        </nav>
+    </header>
 
 
 
@@ -139,7 +138,9 @@
     
 </div>
 <div class="cart" id="cart">
-    <h3>Cart:</h3>
+    <header id="cartHead">
+        <h3>Cart:</h3>  <button class="cartAction" id="exit">X</button>
+    </header>
     <ul id="cartItems">
 
     </ul>
@@ -148,6 +149,8 @@
         <p>Tax (15%): <span id="tax">$0.00</span></p>
         <p>Total: <span id="total">$0.00</span></p>
     </div>
+   <button class="cartAction" onclick="event.preventDefault(); this.parentElement.style.display='none'; window.location.href='Checkout.html'">Checkout</button>
+    
 </div>
 <footer>
    <a href="aboutus.html"> <button class="about">about us</button></a>
