@@ -7,6 +7,11 @@
 
 </head>
 <body>
+    <header>
+        <h1>Grandeur.</h1>
+        </nav>
+    </header>
+
     <div class="container">
         <div class="header">
             <h2>Login</h2>
@@ -41,6 +46,8 @@
 
                 <button type="submit" id="loginBtn">Login</button>
                 <button type="button" id="reset" onclick="reset()">Reset</button>
+                <h4>Don't have an account?</h4>
+                <button type="button" id="regisBtn" onclick="redirectToPage()">Register</button>
         </form>    
             
             <script>
@@ -136,14 +143,14 @@
 
                 //reset form inputs
                 function reset(){
-                    document.getElementById("trn").value= '';
-                    document.getElementById("email").value= '';
-                    document.getElementById("password").value= '';
+                    document.getElementById("trn").innerHTML= '';
+                    document.getElementById("email").innerHTML= '';
+                    document.getElementById("password").innerHTML= '';
                 }
  
                 function redirectToPage() {
                 event.preventDefault();
-                window.location.href = "grandeur.html";
+                window.location.href = "Register.html";
         }
             </script>
             

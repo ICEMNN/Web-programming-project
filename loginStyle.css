@@ -9,12 +9,20 @@ body {
 	background-color: black;
 	color: wheat;
 	font-family: 'Open Sans', sans-serif;
-	display: flex;
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
 	margin: 0;
 }
+
+header{
+	border-bottom: 1px solid wheat;
+	margin-bottom: 15px;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+	height: fit-content;
+	padding-bottom: 5px;
+}
+
 
 .container {
 	background-color:rgba(128, 128, 128, 0.2);
@@ -24,6 +32,7 @@ body {
 	overflow: hidden;
 	width: 400px;
 	max-width: 100%;
+	margin: auto;
 }
 
 .header {
