@@ -18,6 +18,46 @@
         </div>
         <form id="form" class="form">
             <div class="form-control">
+
+                <label for="name">Enter your name</label>
+                <div class="form-control" id="name">
+                    <div class="form-control">
+                        <label for="firstName">First Name :</label>
+                        <input type="text" placeholder="John/Jane" id="firstName" required/> 
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+
+                    </div>
+
+                    <div class="form-control">
+                        <label for="lastName">Last Name :</label>
+                        <input type="text" placeholder="Doe" id="lastName" required/> 
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+
+                    </div>
+
+                </div>
+
+                <div class="form-control">
+                    <div class="form-control">
+                        <label for="dob">Date of Birth</label>
+                        <input id="dob" type="date" placeholder="mm/dd/yyyy"  pattern="{mm/dd/yyyy}" required/>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
+
+                    <label for="sex">Sex(M/F)</label>
+                    <div id="sex" style="display: flex;">
+                        <label for="male" style="margin-right: 5px;">Male</label> <input type="radio" id="male" name="gender" value="male">
+                        <label for="female" style="margin-right: 5px;">Female</label> <input type="radio" id="female" name="gender" value="female">
+                       
+                    </div>
+                </div>
+
                 <label for="trn">Enter a Valid TRN</label>
                 <input type="text" placeholder="(000-000-000)" id="trn" pattern="^\d{,9}$" required maxlength="9"/>
                 <i class="fas fa-check-circle"></i>
@@ -26,7 +66,7 @@
             </div>
             <div class="form-control">
                 <label for="email">Email</label>
-                <input type="email" placeholder="example@gmail.com" id="email" />
+                <input type="email" placeholder="example@gmail.com" id="email" required/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
