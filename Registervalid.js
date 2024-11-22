@@ -6,7 +6,7 @@ const password2 = document.getElementById('password2');
 const firstName = document.getElementById('firstName');
 const lastName = document.getElementById('lastName');
 const dob = document.getElementById('dob');
-const sex = document.getElementById('sex');
+const sex = document.getElementsByName('gender'); //radio buttons for gender
 
 function stringify(item) {
     return JSON.stringify(item);
@@ -15,37 +15,49 @@ function stringify(item) {
 
 document.getElementById('form').addEventListener('submit', function(event) {
 	event.preventDefault(); 
-	checkInputs();
-	
-	const trn = document.getElementById('trn').value;
-	const email = document.getElementById('email').value;
-	const password = document.getElementById('password').value;
-	const form = document.getElementById('form');
-	const firstName = document.getElementById('firstName').value;
-	const lastName = document.getElementById('lastName').value;
-	const dob = document.getElementById('dob').value;
-	const sex = document.getElementById('sex').value;
-	
-	localStorage.setItem("storedUser", stringify(trn));
-	localStorage.setItem("storedEmail", stringify(email));
-	localStorage.setItem("storedPassword", stringify(password));
-	localStorage.setItem("firstName",stringify(firstName));
-	localStorage.setItem("lastName",stringify(lastName));
-	localStorage.setItem("dob",stringify(dob));
-	localStorage.setItem("sex",stringify(sex));
-	
-
-	if(checkInputs() != true){
-		window.alert("Registration Incomplete!");
-	}else{
-		redirectToPage();
-		calculateAge();	
-	}
-
+	if (checkInputs()) {
+        storeFormData();
+        calculateAge();
+        redirectToPage();
+    } else {
+        window.alert("Registration Incomplete!");
+    }
 });
 
+	
+	function storeFormData() {
+		const trnValue = trn.value.trim();
+		const emailValue = email.value.trim();
+		const passwordValue = password.value.trim();
+		const firstNameValue = firstName.value.trim();
+		const lastNameValue = lastName.value.trim();
+		const dobValue = dob.value;
+
+
+		//store gender- radio button value
+		try{
+			const genderValue = getSelectedGender();
+			if (genderValue) {
+				localStorage.setItem("sex", stringify(genderValue));
+			}
+		}catch{
+			console.error('Gender not saved!');
+		}
+
+		localStorage.setItem("storedUser", stringify(trnValue));
+		localStorage.setItem("storedEmail", stringify(emailValue));
+		localStorage.setItem("storedPassword", stringify(passwordValue));
+		localStorage.setItem("firstName", stringify(firstNameValue));
+		localStorage.setItem("lastName", stringify(lastNameValue));
+		localStorage.setItem("dob", stringify(dobValue));
+	}
+	
+
+
+
+
+
 function redirectToPage() {
-	event.preventDefault();
 	window.location.href = "Login.html";
 }
 
@@ -67,7 +79,6 @@ function checkInputs() {
 	const fNameValue = firstName.value.trim();
 	const lNameValue = lastName.value.trim(); 
 	const dateValue = dob.value;
-	const sexValue= sex.value;
 	
 
 
@@ -92,12 +103,10 @@ function checkInputs() {
 		setSuccessFor(dob);
 	}
 
-	if(sexValue === ''){
-		setErrorFor(sexValue,'Please select your sex');
-		complete = false;
-	}else{
-		setSuccessFor(sex);
-	}
+	if (!getSelectedGender()) {
+        setErrorFor(sex[0], 'Please select your sex');
+        complete = false;
+    }
 
 
 	if(trnValue === '') {
@@ -138,19 +147,6 @@ function checkInputs() {
 	return complete;
 }
 
-/*
-//Stores trn as as registrationdata
-document.getElementById('form').addEventListener('submit', function (event) {
-	event.preventDefault();
-
-	var registrationData = {
-		trn: document.getElementById('trn').value,
-		email: document.getElementById('email').value,
-		password: document.getElementById('password').value,
-		password2: document.getElementById('password2').value};
-	localStorage.setItem('registrationData', JSON.stringify(registrationData));
-});
-*/
 
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
@@ -168,15 +164,31 @@ function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
+function getSelectedGender() {
+    let selectedGender = null;
+    sex.forEach(radio => {
+        if (radio.checked) {
+            selectedGender = radio.value;
+        }
+    });
+    return selectedGender;
+}
+
+
 //calculate the age of the person registering and stores it in local storage
 function calculateAge(){
 	const dateInput = document.getElementById("dob").value;
-	const birthDate = new Date(dateInput);
-	const currentDate = new Date();
-	const age = (new Date(currentDate - birthDate).getFullYear)
+    const birthDate = new Date(dateInput);
+    const currentDate = new Date();
+    let age = currentDate.getFullYear() - birthDate.getFullYear();
+    const m = currentDate.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && currentDate.getDate() < birthDate.getDate())) {
+        age--;
+	}
 	localStorage.setItem("age", stringify(age));
 
-	window.alert(`you are ${age} YEARS OLD`)
+	window.alert(`you are ${age} years old.`)
+
 }
 
 

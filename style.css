@@ -103,6 +103,8 @@ img{
     border: solid 1px wheat;
     background: none;
     color: wheat;
+    float: left;
+    margin-top: 5px;
 }
 
 .addBtn:hover{
@@ -117,6 +119,7 @@ img{
     width: fit-content;
     padding: 15px;
     border: 1px solid wheat;
+    text-align: center;
 }
 
 
@@ -139,6 +142,8 @@ img{
     translate:0px -10px;
     box-shadow: 10px 10px rgba(196, 184, 119, 0.3);
     transition: 300ms;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 @keyframes appearing{

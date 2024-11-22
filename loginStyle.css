@@ -40,7 +40,7 @@ header{
 	margin: 10px;
 	margin-top: 5px;
 	height: fit-content;
-	
+
 }
 
 
@@ -71,7 +71,6 @@ header{
 
 .form-control input {
 	background-color: rgba(255, 255, 255, 0.2);
-	
 	color: wheat;
 	border-radius: 4px;
 	display: block;

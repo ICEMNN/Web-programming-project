@@ -9,6 +9,11 @@ let products = [
     { id: 8, type: "tuxedo", price: 299.99, name: "Dark blue suede tuxedo" },
     { id: 9, type: "tuxedo", price: 299.99, name: "Double-breasted black tuxedo" },
     { id: 10, type: "tuxedo", price: 199.99, name: "White tuxedo" },
+    { id: 11, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
+    { id: 12, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
+    { id: 13, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
+    { id: 14, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
+    { id: 15, type: "Double-Breasted", price: 199.99, name: "Double-Breasted tuxedo" },
 ];
 
 let cart = [];
@@ -64,6 +69,15 @@ const market = document.querySelector('.market');
             document.getElementById('tax').textContent = storedTax;
             document.getElementById('total').textContent = storedTotal;
         }
+
+        const data = {
+            cartItems: storedCartItems,
+            subTot: storedSubTot,
+            tax: storedTax,
+            total: storedTotal
+        };
+
+        localStorage.setItem('data', JSON.stringify(data));
     });
 
 market.addEventListener('click', (e) => {
